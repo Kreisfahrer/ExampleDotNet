@@ -8,14 +8,14 @@
 
         public string Zip { get; set; }
 
-        public string Zic { get; set; }
+        public string Sic { get; set; }
 
-        public Employer(string companyName, string address, string zip, string zic)
+        public Employer(string companyName, string address, string zip, string sic)
         {
             CompanyName = companyName;
             Address = address;
             Zip = zip;
-            Zic = zic;
+            Sic = sic;
         }
     }
 }

@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\Employer.cs" />
-    <Compile Include="PageObjects\EmployerInformation.cs" />
+    <Compile Include="PageObjects\EmployerInformationPage.cs" />
     <Compile Include="Popups\QuestionPopup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\EmployerInformationTest.cs" />

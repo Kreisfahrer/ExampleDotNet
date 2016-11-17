@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Rmhp_Framework.PageObjects
 {
-    class EmployerInformation
+    class EmployerInformationPage
     {
-        public EmployerInformation(IWebDriver driver)
+        public EmployerInformationPage(IWebDriver driver)
         {
             this.driver = driver;
             PageFactory.InitElements(driver, this);
@@ -32,11 +32,11 @@ namespace Rmhp_Framework.PageObjects
 
         [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".employerSicCode a")]
-        public IWebElement zicCodeButton;
+        public IWebElement sicCodeButton;
 
         [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".sicCode-modal-search-block-codes-list li")]
-        public IList<IWebElement> zicCodes;
+        public IList<IWebElement> sicCodes;
 
         [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".ihc-warning-wrapper")]
@@ -47,13 +47,13 @@ namespace Rmhp_Framework.PageObjects
             companyName.SendKeys(employer.CompanyName);
             address.SendKeys(employer.Address);
             primaryZip.SendKeys(employer.Zip);
-            SelectSic(employer.Zic);
+            SelectSic(employer.Sic);
         }
 
-        public void SelectSic(string Zic)
+        public void SelectSic(string zic)
         {
-            zicCodeButton.Click();
-            zicCodes.ToList().Find(element => element.Text == Zic).Click();
+            sicCodeButton.Click();
+            sicCodes.ToList().Find(element => element.Text == zic).Click();
         }
 
         public void ClickClearForm()

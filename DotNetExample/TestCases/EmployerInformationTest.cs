@@ -15,17 +15,17 @@ namespace Rmhp_Framework.TestCases
     class EmployerInformationTest
     {
         private IWebDriver driver;
-        EmployerInformation employerInformation;
+        EmployerInformationPage employerInformation;
         QuestionPopup questionPopup;
 
         [SetUp]
         public void Setup()
         {
-            WebDriverFactory.InitBrowser("Chrome");
+            WebDriverFactory.InitBrowser(ConfigurationManager.AppSettings["Browser"]);
             WebDriverFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             driver = WebDriverFactory.Driver;
             driver.Manage().Window.Maximize();
-            employerInformation = new EmployerInformation(driver);
+            employerInformation = new EmployerInformationPage(driver);
             questionPopup = new QuestionPopup(driver);
         }
 
