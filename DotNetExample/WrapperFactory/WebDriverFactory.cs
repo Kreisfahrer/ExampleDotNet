@@ -47,7 +47,7 @@ namespace Rmhp_Framework.WrapperFactory
                 case "IE":
                     if (driver == null)
                     {
-                        driver = new InternetExplorerDriver(@"C:\Libraries\IEDriverServer_x64_2.53.1");
+                        driver = new InternetExplorerDriver();
                         Drivers.Add("IE", Driver);
                     }
                     break;
@@ -55,16 +55,8 @@ namespace Rmhp_Framework.WrapperFactory
                 case "Chrome":
                     if (driver == null)
                     {
-                        driver = new ChromeDriver(@"C:\Libraries\ChromeDriver2.25");
+                        driver = new ChromeDriver();
                         Drivers.Add("Chrome", Driver);
-                    }
-                    break;
-
-                case "Edge":
-                    if (driver == null)
-                    {
-                        driver = new EdgeDriver(@"C:\Libraries\EdgeWebDriver");
-                        Drivers.Add("Edge", Driver);
                     }
                     break;
             }

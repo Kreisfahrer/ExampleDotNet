@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rmhp_Framework", "Rmhp_Framework\Rmhp_Framework.csproj", "{D44028F2-A5DE-4E6D-B1CC-5B2081194149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetExample", "DotNetExample\DotNetExample.csproj", "{D44028F2-A5DE-4E6D-B1CC-5B2081194149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
