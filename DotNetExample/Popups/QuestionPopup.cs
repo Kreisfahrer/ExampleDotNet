@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rmhp_Framework.Popups
 {
@@ -12,23 +7,25 @@ namespace Rmhp_Framework.Popups
     {
         public QuestionPopup(IWebDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
             PageFactory.InitElements(driver, this);
         }
 
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
         [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = "button[class*=yes]")]
-        private IWebElement yes;
+        #pragma warning disable 649
+        private IWebElement _yes;
+        #pragma warning restore 649
 
         [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = "button[class*=no]")]
-        private IWebElement no;
+        private IWebElement _no;
 
         public void ClickYes()
         {
-            yes.Click();
+            _yes.Click();
         }
     }
 }

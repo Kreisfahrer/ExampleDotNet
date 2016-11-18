@@ -1,46 +1,49 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using Rmhp_Framework.Dto;
 using Rmhp_Framework.PageObjects;
 using Rmhp_Framework.Popups;
 using Rmhp_Framework.WrapperFactory;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rmhp_Framework.TestCases
 {
     class EmployerInformationTest
     {
-        private IWebDriver driver;
-        EmployerInformationPage employerInformation;
-        QuestionPopup questionPopup;
+        private IWebDriver _driver;
+        EmployerInformationPage _employerInformation;
+        QuestionPopup _questionPopup;
 
         [SetUp]
         public void Setup()
         {
             WebDriverFactory.InitBrowser(ConfigurationManager.AppSettings["Browser"]);
             WebDriverFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            driver = WebDriverFactory.Driver;
-            driver.Manage().Window.Maximize();
-            employerInformation = new EmployerInformationPage(driver);
-            questionPopup = new QuestionPopup(driver);
+            _driver = WebDriverFactory.Driver;
+            _driver.Manage().Window.Maximize();
+            _employerInformation = new EmployerInformationPage(_driver);
+            _questionPopup = new QuestionPopup(_driver);
         }
 
         [Test]
         public void FillEmployerInformationTest()
         {
-            Employer employer = new Employer("test", "test", "12345", "111 Wheat");
-            employerInformation.FillEmpoyerForm(employer);
-            employerInformation.ClickClearForm();
-            questionPopup.ClickYes();
-            Assert.IsEmpty(employerInformation.companyName.Text);
-            Assert.IsEmpty(employerInformation.address.Text);
+            var employer = new Employer("test", "test", "12345", "111 Wheat");
+            _employerInformation.FillEmpoyerForm(employer);
+            _employerInformation.ClickClearForm();
+            _questionPopup.ClickYes();
+            Assert.IsEmpty(_employerInformation.CompanyName.Text);
+            Assert.IsEmpty(_employerInformation.Address.Text);
         }
 
-        [TearDown]
+        [Test]
+        public void FailingTest()
+        {
+            _employerInformation.FillEmpoyerForm(new Employer("test", "test", "123456", "111 Wheat"));
+            Assert.IsFalse(_employerInformation.Validation.Displayed);
+        }
+
+        [OneTimeTearDown]
         public void TearDown()
         {
             WebDriverFactory.CloseAllDrivers();

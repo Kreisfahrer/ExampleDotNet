@@ -1,10 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Rmhp_Framework.Dto;
 
 namespace Rmhp_Framework.PageObjects
 {
@@ -12,53 +10,50 @@ namespace Rmhp_Framework.PageObjects
     {
         public EmployerInformationPage(IWebDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
             PageFactory.InitElements(driver, this);
         }
 
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
-        [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = "#companyName")]
-        public IWebElement companyName;
+        public IWebElement CompanyName;
 
-        [CacheLookup]
         [FindsBy(How = How.Id, Using = "address")]
-        public IWebElement address;
+        public IWebElement Address;
 
-        [CacheLookup]
         [FindsBy(How = How.Id, Using = "primaryZip")]
-        public IWebElement primaryZip;
+        public IWebElement PrimaryZip;
 
-        [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".employerSicCode a")]
-        public IWebElement sicCodeButton;
+        public IWebElement SicCodeButton;
 
-        [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".sicCode-modal-search-block-codes-list li")]
-        public IList<IWebElement> sicCodes;
+        public IList<IWebElement> SicCodes;
 
-        [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".ihc-warning-wrapper")]
-        public IWebElement clearForm;
+        public IWebElement ClearForm;
+
+        [FindsBy(How = How.CssSelector, Using = ".text-danger")]
+        public IWebElement Validation;
 
         public void FillEmpoyerForm(Employer employer)
         {
-            companyName.SendKeys(employer.CompanyName);
-            address.SendKeys(employer.Address);
-            primaryZip.SendKeys(employer.Zip);
+            CompanyName.SendKeys(employer.CompanyName);
+            Address.SendKeys(employer.Address);
+            PrimaryZip.SendKeys(employer.Zip);
             SelectSic(employer.Sic);
         }
 
         public void SelectSic(string zic)
         {
-            sicCodeButton.Click();
-            sicCodes.ToList().Find(element => element.Text == zic).Click();
+            SicCodeButton.Click();
+            SicCodes.ToList().Find(element => element.Text == zic).Click();
         }
 
         public void ClickClearForm()
         {
-            clearForm.Click();
+            ClearForm.Click();
         }
     }
 }

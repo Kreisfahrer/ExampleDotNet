@@ -1,4 +1,4 @@
-﻿namespace Rmhp_Framework.PageObjects
+﻿namespace Rmhp_Framework.Dto
 {
     public class Employer
     {

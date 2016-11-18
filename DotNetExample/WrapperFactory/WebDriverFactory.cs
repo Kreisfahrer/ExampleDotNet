@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Edge;
 
 
 namespace Rmhp_Framework.WrapperFactory
@@ -15,19 +11,19 @@ namespace Rmhp_Framework.WrapperFactory
     class WebDriverFactory
     {
         private static readonly IDictionary<string, IWebDriver> Drivers = new Dictionary<string, IWebDriver>();
-        private static IWebDriver driver;
+        private static IWebDriver _driver;
 
         public static IWebDriver Driver
         {
             get
             {
-                if (driver == null)
+                if (_driver == null)
                     throw new NullReferenceException("The WebDriver browser instance was not initialized. You should first call the method InitBrowser.");
-                return driver;
+                return _driver;
             }
             private set
             {
-                driver = value;
+                _driver = value;
             }
         }
 
@@ -37,25 +33,25 @@ namespace Rmhp_Framework.WrapperFactory
             switch (browserName)
             {
                 case "Firefox":
-                    if (driver == null)
+                    if (_driver == null)
                     {
-                        driver = new FirefoxDriver();
+                        _driver = new FirefoxDriver();
                         Drivers.Add("Firefox", Driver);
                     }
                     break;
 
                 case "IE":
-                    if (driver == null)
+                    if (_driver == null)
                     {
-                        driver = new InternetExplorerDriver();
+                        _driver = new InternetExplorerDriver();
                         Drivers.Add("IE", Driver);
                     }
                     break;
 
                 case "Chrome":
-                    if (driver == null)
+                    if (_driver == null)
                     {
-                        driver = new ChromeDriver();
+                        _driver = new ChromeDriver(@"c:\webdrivers\");
                         Drivers.Add("Chrome", Driver);
                     }
                     break;
